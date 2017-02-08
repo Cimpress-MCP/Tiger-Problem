@@ -1,31 +1,50 @@
-# Tiger.Clock
+# Tiger.Problem
 
 ## What It Is
 
-Tiger.Clock is a library of sources of system time that are injectable and mockable.
+Tiger.Clock is an implementation of [RFC 7807](https://tools.ietf.org/html/rfc7807), which defines a "problem detail" as a way to carry machine-readable details of errors in a HTTP response to avoid the need to define new error response formats for HTTP APIs.
 
 ## Why You Want It
 
-When writing a method that requires the use of the current time, it's very easy and not *exactly* wrong to reach for properties on the `DateTimeOffset` structure – usually these:
+From the RFC:
 
-- `DateTimeOffset.Now`
-- `DateTimeOffset.UtcNow`
-
-(The structure `DateTime` has been largely superseded by `DateTimeOffset`, and has limited remaining use cases.)
-
-These properties will give the correct answers and work as promised in application code. Where their use becomes troublesome is in *tests* of that application code. The property `DateTimeOffset.Now` is incapable of returning anything but the current system time in the local time offset. If a test requires that it be run on 2010-07-28 in order to achieve a divergence value of 1.048596%, then the test can only be run on that actual day. Tests that are hard or impossible to write will not get written, tests that are not written test no functionality, and functionality that is not tested is fragile.
-
-In a language such as C#, this is typically overcome by use of inversion of control (IoC), and there is nothing preventing date and time calculation from joining in.
+> HTTP status codes are sometimes not sufficient to convey
+> enough information about an error to be helpful.  While humans behind
+> Web browsers can be informed about the nature of the problem with an
+> HTML response body, non-human consumers of
+> so-called "HTTP APIs" are usually not.
+> 
+> This specification defines simple JSON and XML
+> document formats to suit this purpose.  They
+> are designed to be reused by HTTP APIs, which can identify distinct
+> "problem types" specific to their needs.
+> 
+> Thus, API clients can be informed of both the high-level error class
+> (using the status code) and the finer-grained details of the problem
+> (using one of these formats).
+> 
+> For example, consider a response that indicates that the client's
+> account doesn't have enough credit.  The 403 Forbidden status code
+> might be deemed most appropriate to use, as it will inform HTTP-
+> generic software (such as client libraries, caches, and proxies) of
+> the general semantics of the response.
+> 
+> However, that doesn't give the API client enough information about
+> why the request was forbidden, the applicable account balance, or how
+> to correct the problem.  If these details are included in the
+> response body in a machine-readable format, the client can treat it
+> appropriately; for example, triggering a transfer of more credit into
+> the account.
 
 ## How You Use It
 
-Services that require use of system time should take a dependency (by whatever means) on a value of the type `IClock` (which we'll call `_clock`). Currently, the only type in the library that implements this interface is `StandardClock`, so ensure that an instance of that type is bound to the `IClock` value. Then, whenever `DateTimeOffset.Now` or `DateTimeOffset.UtcNow` would be used, substitute `_clock.Now` and `_clock.UtcNow`, respectively.
+When a condition arises in implementing an HTTP API that requires the return of an error status code (typically between 400 and 599), construct a `Problem` object with the details of the error, and send it as the body of the response. Documenting that your application returns `application/problem+json` upon error conditions, add the Problem JSON formatter to the available formatters in the startup class of your ASP.NET Core application. This can be done by calling an extension method on values of either `IMvcBuilder` or `IMvcCoreBuilder` (<i lang="la">i.e.</i>, on the result of calling `AddMvc` or `AddMvcCore`).
 
 When testing that service, it can take a dependency on a mock `IClock` or a specialized fake `IClock`.
 
-### A Note on Testing
+### What about XML?
 
-From implementation experience, a curious pattern in testing has emerged. If you are using Autofixture or some other test-data–generating library, it's easier to let the data be generated with whatever datetime values are randomly chosen by the library and redefine *now* to be within the test's tolerance of that generated value.
+XML serialization support is not a feature request that has yet reached critical mass.
 
 ## How You Develop It
 
