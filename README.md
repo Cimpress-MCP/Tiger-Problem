@@ -2,7 +2,7 @@
 
 ## What It Is
 
-Tiger.Clock is an implementation of [RFC 7807](https://tools.ietf.org/html/rfc7807), which defines a "problem detail" as a way to carry machine-readable details of errors in a HTTP response to avoid the need to define new error response formats for HTTP APIs.
+Tiger.Problem is an implementation of [RFC 7807](https://tools.ietf.org/html/rfc7807), which defines a "problem detail" as a way to carry machine-readable details of errors in a HTTP response to avoid the need to define new error response formats for HTTP APIs.
 
 ## Why You Want It
 
