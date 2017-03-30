@@ -19,29 +19,12 @@ namespace Tiger.Problem
             if (context == null) { throw new ArgumentNullException(nameof(context)); }
 
             model.Description = "Represents an error in an HTTP response.";
-            model.Properties = new Dictionary<string, Schema>()
-            {
-                ["type"] = new Schema
-                {
-                    Description = "An identifier of the problem type."
-                },
-                ["title"] = new Schema
-                {
-                    Description = "A short, human-readable summary of the problem type."
-                },
-                ["status"] = new Schema
-                {
-                    Description = "An HTTP status code for this occurrence of the problem."
-                },
-                ["detail"] = new Schema
-                {
-                    Description = "A human-readable explanation specific to this occurrence of the problem."
-                },
-                ["instance"] = new Schema
-                {
-                    Description = "An identifier for this occurrence of the problem."
-                }
-            };
+
+            model.Properties["type"].Description = "An identifier of the problem type.";
+            model.Properties["title"].Description = "A short, human-readable summary of the problem type.";
+            model.Properties["status"].Description = "An HTTP status code for this occurrence of the problem.";
+            model.Properties["detail"].Description = "A human-readable explanation specific to this occurrence of the problem.";
+            model.Properties["instance"].Description = "An identifier for this occurrence of the problem.";
 
             model.Example = new Problem(new Uri(@"http://cimpress.invalid/problems/invalid-order-id", Absolute))
             {
