@@ -2,33 +2,44 @@
 
   <PropertyGroup>
     <Description>An implementation of an RFC-7807–compliant API Problem object.</Description>
-    <Copyright>Copyright ©Cimpress 2017</Copyright>
+    <Copyright>©Cimpress 2017</Copyright>
     <AssemblyTitle>Tiger Problem</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.0.1</VersionPrefix>
     <Authors>cosborn@cimpress.com</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <DefineConstants>$(DefineConstants);CODE_ANALYSIS</DefineConstants>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugType>portable</DebugType>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <CodeAnalysisRuleSet>../Tiger.ruleset</CodeAnalysisRuleSet>
     <AssemblyName>Tiger.Problem</AssemblyName>
     <PackageId>Tiger.Problem</PackageId>
     <PackageTags>api;problem;rfc7807;error;response</PackageTags>
-    <PackageReleaseNotes>Everything is new!</PackageReleaseNotes>
+    <PackageReleaseNotes>⁃ Documentation is slightly improved.
+</PackageReleaseNotes>
     <PackageProjectUrl>https://mcpstash.cimpress.net/projects/TIGER</PackageProjectUrl>
     <PackageIconUrl>https://mcpstash.cimpress.net/projects/TIGER/repos/problem/browse/tiger_logo.png?raw</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://mcpstash.cimpress.net/projects/TIGER/repos/problem</RepositoryUrl>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Features>IOperation</Features> 
+  </PropertyGroup>
+
   <ItemGroup>
+    <AdditionalFiles Include="../stylecop.json" />
     <None Remove="Tiger.Types.csproj.DotSettings" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="1.0.0-rc3" />
-    <!-- <PackageReference Include="StyleCop.Analyzers" Version="1.0.0">
+
+    <!--<PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta001">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Analyzers" Version="1.2.0-beta2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>-->
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -17,15 +18,39 @@ namespace Tiger.Problem
             if (model == null) { throw new ArgumentNullException(nameof(model)); }
             if (context == null) { throw new ArgumentNullException(nameof(context)); }
 
-            const long id = -42L;
+            model.Description = "Represents an error in an HTTP response.";
+            model.Properties = new Dictionary<string, Schema>()
+            {
+                ["type"] = new Schema
+                {
+                    Description = "An identifier of the problem type."
+                },
+                ["title"] = new Schema
+                {
+                    Description = "A short, human-readable summary of the problem type."
+                },
+                ["status"] = new Schema
+                {
+                    Description = "An HTTP status code for this occurrence of the problem."
+                },
+                ["detail"] = new Schema
+                {
+                    Description = "A human-readable explanation specific to this occurrence of the problem."
+                },
+                ["instance"] = new Schema
+                {
+                    Description = "An identifier for this occurrence of the problem."
+                }
+            };
+
             model.Example = new Problem(new Uri(@"http://cimpress.invalid/problems/invalid-order-id", Absolute))
             {
                 Title = "Invalid Order ID",
-                Detail = "An Order ID must be non-negative.",
+                Detail = $"The provided Order ID was a negative number. An Order ID must be non-negative.",
                 Status = Status400BadRequest,
                 Extensions =
                 {
-                    [nameof(id)] = id
+                    ["id"] = -42L
                 }
             };
         }

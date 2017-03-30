@@ -14,25 +14,38 @@ namespace Tiger.Problem
     [PublicAPI]
     public sealed class Problem
     {
-        static readonly Uri _blank = new Uri(@"about:blank", Absolute);
+        static readonly Uri s_blank = new Uri(@"about:blank", Absolute);
+
+        /// <summary>Initializes a new instance of the <see cref="Problem"/> class.</summary>
+        public Problem()
+        {
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="Problem"/> class.</summary>
+        /// <param name="type">The identifier  of the problem type.</param>
+        [JsonConstructor]
+        public Problem([CanBeNull] Uri type)
+        {
+            Type = type ?? s_blank;
+        }
 
         /// <summary>Gets an identifier of the problem type</summary>
         [NotNull]
         [JsonProperty(DefaultValueHandling = Ignore)]
-        public Uri Type { get; } = _blank;
+        public Uri Type { get; } = s_blank;
 
-        /// <summary>Gets or sets a short, human-readable summary of the problem type</summary>
+        /// <summary>Gets or sets a short, human-readable summary of the problem type.</summary>
         [JsonProperty(DefaultValueHandling = Ignore)]
         public string Title { get; set; }
 
-        /// <summary>Gets or sets an HTTP status code for this occurrence of the problem</summary>
+        /// <summary>Gets or sets an HTTP status code for this occurrence of the problem.</summary>
         /// <remarks>
         /// This value must be the same as the status code in the HTTP response.
         /// </remarks>
         [JsonProperty(DefaultValueHandling = Ignore)]
         public int? Status { get; set; }
 
-        /// <summary>Gets or sets a human-readable explanation specific to this occurrence of the problem</summary>
+        /// <summary>Gets or sets a human-readable explanation specific to this occurrence of the problem.</summary>
         [JsonProperty(DefaultValueHandling = Ignore)]
         public string Detail { get; set; }
 
@@ -51,26 +64,13 @@ namespace Tiger.Problem
          */
         [JsonExtensionData, NotNull]
         public IDictionary<string, dynamic> Extensions { get; } =
-            new Dictionary<string, dynamic>(OrdinalIgnoreCase);
-
-        /// <summary>Initializes a new instance of the <see cref="Problem"/> class.</summary>
-        public Problem()
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="Problem"/> class.</summary>
-        /// <param name="type">The identifier  of the problem type.</param>
-        [JsonConstructor]
-        public Problem([CanBeNull] Uri type)
-        {
-            Type = type ?? _blank;
-        }
+            new Dictionary<string, dynamic>(Ordinal);
 
         /// <summary>Determines whether <see cref="Type"/> should be serialized.</summary>
         /// <returns>
         /// <see langword="true"/> if <see cref="Type"/> should be serialized;
         /// otherwise, <see langword="false"/>.
         /// </returns>
-        public bool ShouldSerializeType() => Type != _blank;
+        public bool ShouldSerializeType() => Type != s_blank;
     }
 }
