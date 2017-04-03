@@ -27,12 +27,6 @@ namespace Tiger.Problem
 
         static void AddProblemJsonFormatterServices([NotNull] IServiceCollection services)
         {
-            // note(cosborn) First add the JSON formatting prerequisites...
-            services.TryAddEnumerable(Transient<IConfigureOptions<MvcOptions>, MvcJsonMvcOptionsSetup>());
-            services.TryAddEnumerable(Transient<IApiDescriptionProvider, JsonPatchOperationsArrayProvider>());
-            services.TryAddSingleton<JsonResultExecutor>();
-            
-            // note(cosborn) ...then add Problem formatting proper.
             services.TryAddEnumerable(Transient<IConfigureOptions<MvcOptions>, MvcProblemJsonMvcOptionsSetup>());
         }
     }
