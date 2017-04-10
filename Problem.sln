@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26114.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiger.Problem", "src\Tiger.Problem.csproj", "{CF5F20F1-CC43-4FAA-B327-6928BF97DA27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "test\Test.csproj", "{F6CDA72B-6B8F-4B01-9E1B-7A1F53A744E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "unit\Test.csproj", "{F6CDA72B-6B8F-4B01-9E1B-7A1F53A744E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,6 +11,7 @@
     <DefineConstants>$(DefineConstants);CODE_ANALYSIS</DefineConstants>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugType>portable</DebugType>
+    <PreserveCompilationContext>false</PreserveCompilationContext>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>../Tiger.ruleset</CodeAnalysisRuleSet>
     <AssemblyName>Tiger.Problem</AssemblyName>
@@ -30,7 +31,6 @@
 
   <ItemGroup>
     <AdditionalFiles Include="../stylecop.json" />
-    <None Remove="Tiger.Types.csproj.DotSettings" />
   </ItemGroup>
 
   <ItemGroup>
