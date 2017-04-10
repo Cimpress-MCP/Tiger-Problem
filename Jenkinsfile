@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'dotnet test -c Release test/Test.csproj'
+        sh 'dotnet test -c Release ./unit/Test.csproj'
       }
     }
     stage('Pack') {
