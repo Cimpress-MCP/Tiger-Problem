@@ -36,7 +36,7 @@ namespace Tiger.Problem
 
         /// <summary>Initializes a new instance of the <see cref="Problem"/> class.</summary>
         /// <param name="extensions">A collection of extension data members for this problem type.</param>
-        public Problem([CanBeNull] IDictionary<string, dynamic> extensions = null)
+        public Problem([CanBeNull] IDictionary<string, dynamic> extensions = default)
         {
             if (extensions != null)
             {
@@ -48,7 +48,7 @@ namespace Tiger.Problem
         /// <param name="type">The identifier  of the problem type.</param>
         /// <param name="extensions">A collection of extension data members for this problem type.</param>
         [JsonConstructor]
-        public Problem([CanBeNull] Uri type, [CanBeNull] IDictionary<string, dynamic> extensions = null)
+        public Problem([CanBeNull] Uri type, [CanBeNull] IDictionary<string, dynamic> extensions = default)
             : this(extensions)
         {
             Type = type ?? s_blank;

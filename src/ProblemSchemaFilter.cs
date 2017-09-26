@@ -44,7 +44,7 @@ namespace Tiger.Problem
             model.Example = new Problem(new Uri(@"http://cimpress.invalid/problems/invalid-order-id", Absolute))
             {
                 Title = "Invalid Order ID",
-                Detail = $"The provided Order ID was a negative number. An Order ID must be non-negative.",
+                Detail = "The provided Order ID was a negative number. An Order ID must be non-negative.",
                 Status = Status400BadRequest,
                 Extensions =
                 {

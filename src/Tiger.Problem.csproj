@@ -19,14 +19,16 @@
     <PackageTags>api;problem;rfc7807;error;response</PackageTags>
     <PackageReleaseNotes>⁃ Constructors have been augmented to allow extension data to be set all at once.
 </PackageReleaseNotes>
-    <PackageProjectUrl>https://mcpstash.cimpress.net/projects/TIGER</PackageProjectUrl>
-    <PackageIconUrl>https://mcpstash.cimpress.net/projects/TIGER/repos/problem/browse/tiger_logo.png?raw</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/Cimpress-MCP/Tiger-Problem</PackageProjectUrl>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>  
+    <PackageIconUrl>https://raw.githubusercontent.com/Cimpress-MCP/Tiger-Problem/master/tiger_logo.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://mcpstash.cimpress.net/projects/TIGER/repos/problem</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Cimpress-MCP/Tiger-Problem.git</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Features>IOperation</Features> 
+    <Features>IOperation</Features>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

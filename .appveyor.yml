@@ -10,7 +10,6 @@
   before_build:
     - ps: dotnet restore
   build:
-    project: Problem.sln
     publish_nuget: true
     verbosity: minimal
   test_script:
@@ -28,7 +27,6 @@
   before_build:
     - ps: dotnet restore
   build:
-    project: Problem.sln
     publish_nuget: true
     verbosity: minimal
   test_script:

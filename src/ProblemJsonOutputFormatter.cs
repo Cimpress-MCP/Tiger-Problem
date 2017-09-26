@@ -23,7 +23,7 @@ using Newtonsoft.Json;
 namespace Tiger.Problem
 {
     /// <summary>A <see cref="JsonOutputFormatter"/> for Problem+JSON content.</summary>
-    class ProblemJsonOutputFormatter
+    sealed class ProblemJsonOutputFormatter
         : JsonOutputFormatter
     {
         /// <summary>Initializes a new instance of the <see cref="ProblemJsonOutputFormatter"/> class.</summary>
