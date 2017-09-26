@@ -5,7 +5,7 @@
     <Copyright>©Cimpress 2017</Copyright>
     <AssemblyTitle>Tiger Problem</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>1.0.3</VersionPrefix>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <Authors>cosborn@cimpress.com</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <DefineConstants>$(DefineConstants);CODE_ANALYSIS</DefineConstants>
@@ -17,7 +17,7 @@
     <AssemblyName>Tiger.Problem</AssemblyName>
     <PackageId>Tiger.Problem</PackageId>
     <PackageTags>api;problem;rfc7807;error;response</PackageTags>
-    <PackageReleaseNotes>⁃ Documentation is slightly improved.
+    <PackageReleaseNotes>⁃ Constructors have been augmented to allow extension data to be set all at once.
 </PackageReleaseNotes>
     <PackageProjectUrl>https://mcpstash.cimpress.net/projects/TIGER</PackageProjectUrl>
     <PackageIconUrl>https://mcpstash.cimpress.net/projects/TIGER/repos/problem/browse/tiger_logo.png?raw</PackageIconUrl>
