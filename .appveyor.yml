@@ -1,0 +1,37 @@
+-
+  branches:
+    only:
+      - master
+  version: '{build}'
+  image: Visual Studio 2017
+  environment:
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  configuration: Release
+  before_build:
+    - ps: dotnet restore
+  build:
+    project: Problem.sln
+    publish_nuget: true
+    verbosity: minimal
+  test_script:
+    - ps: dotnet test -c Release --no-build ./unit/Test.csproj
+  deploy_script:
+    - ps: echo "Not ready yet."
+  dotnet_csproj:
+    patch: false
+-
+  version: '{build}'
+  image: Visual Studio 2017
+  environment:
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  configuration: Release
+  before_build:
+    - ps: dotnet restore
+  build:
+    project: Problem.sln
+    publish_nuget: true
+    verbosity: minimal
+  test_script:
+    - ps: dotnet test -c Release --no-build ./unit/Test.csproj
+  dotnet_csproj:
+    patch: false
