@@ -14,8 +14,10 @@
     verbosity: minimal
   test_script:
     - ps: dotnet test -c Release --no-build ./unit/Test.csproj
-  deploy_script:
-    - ps: echo "Not ready yet."
+  deploy:
+    provider: NuGet
+    api_key:
+      secure: lDZOfkSGSv+vsyfNqk8CEfIeePGrEr6eNpeu3qDo8DlUFlJnubB+0KuR01t34hVl
   dotnet_csproj:
     patch: false
 -
