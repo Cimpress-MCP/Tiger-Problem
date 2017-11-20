@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -28,6 +29,7 @@ namespace Tiger.Problem
     /// <summary>Represents an error in an HTTP response.</summary>
     [SwaggerSchemaFilter(typeof(ProblemSchemaFilter))]
     [PublicAPI]
+    [SuppressMessage("Microsoft.Guidelines", "CA1724", Justification = "No.")]
     public sealed class Problem
     {
         static readonly Uri s_blank = new Uri(@"about:blank", Absolute);
@@ -57,6 +59,7 @@ namespace Tiger.Problem
         /// <summary>Gets an identifier of the problem type</summary>
         [NotNull]
         [JsonProperty(DefaultValueHandling = Ignore)]
+        [SuppressMessage("Microsoft:Guidelines", "CA1721", Justification = "That's what it's called.")]
         public Uri Type { get; } = s_blank;
 
         /// <summary>Gets or sets a short, human-readable summary of the problem type.</summary>
