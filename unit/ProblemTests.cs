@@ -1,16 +1,17 @@
-﻿// ReSharper disable All
-
-using System;
+﻿using System;
 using Xunit;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 using static Newtonsoft.Json.JsonConvert;
 using static System.UriKind;
+// ReSharper disable All
 
 namespace Tiger.Problem.Test
 {
     /// <summary>Tests related to <see cref="Problem"/>.</summary>
-    public class ProblemTests
+    public static class ProblemTests
     {
+        public static Uri AboutBlank = new Uri(@"about:blank", Absolute);
+
         public static readonly TheoryData<Problem> _roundtripProblems = new TheoryData<Problem>
         {
             null,
@@ -31,46 +32,27 @@ namespace Tiger.Problem.Test
         public static readonly TheoryData<Problem> _aboutBlankProblems = new TheoryData<Problem>
         {
             new Problem(),
-            new Problem(new Uri(@"about:blank", Absolute))
+            new Problem(AboutBlank)
         };
 
         [Fact(DisplayName = "Type is implicitly about:blank.")]
-        public static void AboutBlank()
-        {
-            // arrange
-            var blank = new Uri(@"about:blank", Absolute);
-            var sut = new Problem();
-
-            // act
-            var actual = sut.Type;
-
-            // assert
-            Assert.Equal(blank, actual);
-        }
+        static void AboutBlank_Implicit() => Assert.Equal(AboutBlank, new Problem().Type);
 
         [Fact(DisplayName = "Type is implicitly about:blank, even after round-tripping.")]
-        public static void AboutBlank_Serialization()
+        static void AboutBlank_Serialization()
         {
-            // arrange
-            var blank = new Uri(@"about:blank", Absolute);
-            var sut = new Problem();
+            var actual = DeserializeObject<Problem>(SerializeObject(new Problem()));
 
-            // act
-            var actual = DeserializeObject<Problem>(SerializeObject(sut));
-
-            // assert
             Assert.NotNull(actual);
-            Assert.Equal(blank, actual.Type);
+            Assert.Equal(AboutBlank, actual.Type);
         }
 
         [Theory(DisplayName = "about:blank is not written into the serialization.")]
         [MemberData(nameof(_aboutBlankProblems))]
-        public static void AboutBlank_Implicit(Problem problem)
+        static void Serialization_Implicit(Problem problem)
         {
-            // act
             var actual = DeserializeObject<dynamic>(SerializeObject(problem));
 
-            // assert
             Assert.NotNull(actual);
             Assert.Null(actual.Type);
             Assert.Null(actual.type); // note(cosborn) Belt and suspenders.
@@ -78,19 +60,12 @@ namespace Tiger.Problem.Test
 
         [Theory(DisplayName = "A problem object does not change after serialization and deserialization.")]
         [MemberData(nameof(_roundtripProblems))]
-        public static void Serialization_RoundTrip(Problem problem)
-        {
-            // act
-            var actual = DeserializeObject<Problem>(SerializeObject(problem));
-
-            // assert
-            Assert.Equal(problem, actual, new ProblemTestEqualityComparer());
-        }
+        static void Serialization_RoundTrip(Problem problem) =>
+            Assert.Equal(problem, DeserializeObject<Problem>(SerializeObject(problem)), new ProblemTestEqualityComparer());
 
         [Fact(DisplayName = "Extensions are hoisted to the top-level object.")]
-        public static void Serialization_Extensions()
+        static void Serialization_Extensions()
         {
-            // arrange
             var sut = new Problem
             {
                 Extensions =
@@ -99,10 +74,8 @@ namespace Tiger.Problem.Test
                 }
             };
 
-            // act
             var actual = DeserializeObject<dynamic>(SerializeObject(sut));
 
-            // assert
             Assert.NotNull(actual);
             Assert.NotNull(actual.id);
             var id = Assert.IsType<long>((long?)actual.id);

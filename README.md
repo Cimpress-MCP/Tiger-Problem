@@ -38,7 +38,7 @@ From the RFC:
 
 ## How You Use It
 
-When a condition arises in implementing an HTTP API that requires the return of an error status code (typically between 400 and 599), construct a `Problem` object with the details of the error, and send it as the body of the response. Documenting that your application returns `application/problem+json` upon error conditions, add the Problem JSON formatter to the available formatters in the startup class of your ASP.NET Core application. This can be done by calling an extension method on values of either `IMvcBuilder` or `IMvcCoreBuilder` (<i lang="la">i.e.</i>, on the result of calling `AddMvc` or `AddMvcCore`).
+When a condition arises in implementing an HTTP API that requires the return of an error status code (typically between 400 and 599), construct a `Problem` object with the details of the error, and send it as the body of the response. Documenting that your application returns `application/problem+json` upon error conditions, add the Problem JSON formatter to the available formatters in the startup class of your ASP.NET Core application. This can be done by calling an extension method on values of `IMvcBuilder` (<i lang="la">i.e.</i>, on the result of calling `AddMvc`).
 
 ### What about XML?
 
@@ -59,6 +59,7 @@ The parameter `--configuration` (shortname `-c`) can be supplied to the `build`,
 - “Release”
 
 This repository is attempting to use the [GitFlow](http://jeffkreeftmeijer.com/2010/why-arent-you-using-git-flow/) branching methodology. Results may be mixed, please be aware.
+
 ## Thank You
 
 Seriously, though. Thank you for using this software. The author hopes it performs admirably for you.
