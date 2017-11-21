@@ -38,7 +38,7 @@ From the RFC:
 
 ## How You Use It
 
-When a condition arises in implementing an HTTP API that requires the return of an error status code (typically between 400 and 599), construct a `Problem` object with the details of the error, and send it as the body of the response. Documenting that your application returns `application/problem+json` upon error conditions, add the Problem JSON formatter to the available formatters in the startup class of your ASP.NET Core application. This can be done by calling an extension method on values of `IMvcBuilder` (<i lang="la">i.e.</i>, on the result of calling `AddMvc`).
+When a condition arises in implementing an HTTP API that requires the return of an error status code (typically between 400 and 599), construct a `Problem` object with the details of the error, and send it as the body of the response. ASP.NET Core will take care of returning `application/problem+json` when the client indicates that it is accepted.
 
 ### What about XML?
 
