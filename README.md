@@ -1,5 +1,9 @@
 # Tiger.Problem
 
+## Deprecated
+
+This functionality has been rolled upstream into ASP.NET Core. Please seek the type `ProblemDetails`.
+
 ## What It Is
 
 Tiger.Problem is an implementation of [RFC 7807](https://tools.ietf.org/html/rfc7807), which defines a "problem detail" as a way to carry machine-readable details of errors in a HTTP response to avoid the need to define new error response formats for HTTP APIs.
